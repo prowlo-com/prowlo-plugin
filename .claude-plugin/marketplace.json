@@ -1,0 +1,25 @@
+{
+  "name": "prowlo",
+  "owner": {
+    "name": "Prowlo",
+    "email": "support@prowlo.com"
+  },
+  "description": "Prowlo's official Claude Code plugins",
+  "plugins": [
+    {
+      "name": "prowlo",
+      "source": "./prowlo",
+      "description": "Connect Claude to a curated, scored Reddit opportunity feed. Browse high-intent threads, read subreddit moderation patterns, manage tracked keywords, and draft replies — all from Claude.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Prowlo",
+        "email": "support@prowlo.com",
+        "url": "https://prowlo.com"
+      },
+      "homepage": "https://prowlo.com/integrations/claude-mcp",
+      "license": "Proprietary",
+      "category": "productivity",
+      "tags": ["reddit", "lead-generation", "mcp", "social-listening", "sales", "marketing"]
+    }
+  ]
+}
