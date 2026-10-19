@@ -2,7 +2,7 @@
   "name": "prowlo",
   "displayName": "Prowlo",
   "version": "1.0.0",
-  "description": "Search and monitor Reddit, Hacker News, X, Mastodon and RSS from Claude. Connects to the hosted Prowlo MCP server: search your indexed Dataset by meaning, read Reddit and Hacker News live, vet subreddits in a free catalog, and set up Watchers, Alerts and Trends. Read-only: it never posts, comments or votes.",
+  "description": "Search and monitor Reddit and Hacker News, plus Mastodon, RSS and X, from Claude. Connects to the hosted Prowlo MCP server: search your indexed Dataset by meaning, read Reddit and Hacker News live, vet subreddits in a free catalog, and set up Watchers, Alerts and Trends. Read-only: it never posts, comments or votes.",
   "author": {
     "name": "Prowlo",
     "email": "support@prowlo.com",

@@ -18,7 +18,7 @@ Arguments: `$ARGUMENTS`
 ## Steps
 
 1. `keyword_monitor_list` to see which names already have a daily Reddit-wide search.
-2. For each name, `search_dataset` with `mode` "keyword", `query` set to the name, `any` set to the name and its obvious variants, and `from` set to N days ago.
+2. For each name, `list_records` with `any` set to the name and its obvious variants and `from` set to N days ago. Page with `cursor` until `nextCursor` is null. For themes (praise, complaints), use `search_dataset` with `mode` "semantic" and the theme as `query`.
 3. If a name has little or no Dataset coverage, run one `social_search` (`platform` "reddit", `query` set to the name, `sort` "new", `time` "month") and, if relevant, one with `platform` "hackernews". Keep live reads to two per name.
 4. Open the most important posts with `get_record` or `social_get_post` before judging sentiment.
 5. Report: coverage per name, sentiment split with counts, main praise and complaints with links, comparison threads, and open questions.

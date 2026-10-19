@@ -1,8 +1,8 @@
 # Prowlo for Claude
 
-Prowlo lets Claude search and monitor public discussions on Reddit, Hacker News, X, Mastodon and RSS feeds. You create Watchers that follow sources you choose. New posts from those sources are indexed into your own Dataset, which Claude can search by meaning. Claude can also read Reddit and Hacker News live, look up subreddits in a free catalog, and set up Alerts and Trends when you ask.
+Prowlo lets Claude search and monitor public discussions on Reddit and Hacker News, plus Mastodon, RSS feeds and X. You create Watchers that follow sources you choose. New posts from those sources are indexed into your own Dataset, which Claude can search by meaning. Claude can also read Reddit and Hacker News live, look up subreddits in a free catalog, and set up Alerts and Trends when you ask.
 
-Prowlo is read-only toward Reddit and X. It never posts, comments, votes or sends messages.
+Prowlo is read-only toward every source. It never posts, comments, votes or sends messages.
 
 ## What this plugin does
 
@@ -14,28 +14,22 @@ This plugin adds three things to Claude:
 
 ### What data is sent to Prowlo
 
-When Claude calls a Prowlo tool, the tool name and its arguments are sent to `https://api.prowlo.com/mcp` under your Prowlo account. Arguments are things like search queries, subreddit names, brand names, date ranges, and the settings of Watchers or Alerts you ask Claude to create. Prowlo returns posts, records and statistics, which Claude then reads. Your conversation with Claude is not sent to Prowlo, only these tool calls. See the [privacy policy](https://prowlo.com/privacy) for how Prowlo handles account data.
+When Claude calls a Prowlo tool, the tool name and its arguments are sent to `https://api.prowlo.com/mcp` under your Prowlo account. Arguments are things like search queries, subreddit names, brand names, date ranges, and the settings of Watchers or Alerts you ask Claude to create. Prowlo returns posts, records and statistics, which Claude then reads. Your conversation with Claude is not sent to Prowlo, only these tool calls. Alerts you create deliver matching posts to the Slack workspace or webhook URL you configure. See the [privacy policy](https://prowlo.com/privacy) for how Prowlo handles account data.
 
 ### Sign-in
 
-The server uses OAuth. The first time Claude uses a Prowlo tool you will be asked to sign in to Prowlo (or create an account) and approve access. No API key is needed. You can revoke access at any time from your Prowlo account settings.
+The server uses OAuth. The first time Claude uses a Prowlo tool you will be asked to sign in to Prowlo (or create an account) and approve access. No API key is needed. You can revoke access at any time from Settings → Connected Apps in your Prowlo account (admins).
 
 ## Install
 
-In Claude Code:
-
-```
-/plugin install prowlo --marketplace prowlo-com/prowlo-plugin
-```
-
-Or add the marketplace first and then install:
+In Claude Code, add the marketplace and then install:
 
 ```
 /plugin marketplace add prowlo-com/prowlo-plugin
 /plugin install prowlo@prowlo
 ```
 
-In the Claude apps, install Prowlo from the plugin directory and sign in when prompted.
+Or install from the Claude Directory once listed, and sign in when prompted.
 
 ## First prompts
 
@@ -50,7 +44,7 @@ In the Claude apps, install Prowlo from the plugin directory and sign in when pr
 - **social-research**: how to choose between the Dataset, live reads and the catalog, how to keep metered reads low, and how to cite post links in answers.
 - **niche-digest**: a daily or weekly digest of what a community or topic discussed, with themes, notable threads and the questions people asked.
 - **brand-and-competitor-monitoring**: finds mentions of a brand and its competitors and summarizes sentiment. Sets up Keyword Monitors, Watchers or Alerts only when you ask.
-- **community-discovery**: finds and vets subreddits by size, activity, growth and promo tolerance, then offers to watch the ones you pick.
+- **community-discovery**: finds and vets subreddits by size, activity, growth and posting rules, then offers to watch the ones you pick.
 
 ## Commands
 
@@ -65,15 +59,20 @@ The commands only read data. When a command suggests creating a Watcher, Keyword
 The Prowlo MCP server provides these tools. Read tools are marked read-only to Claude; tools that change your Prowlo account are not.
 
 **Dataset** (your indexed posts; free, rate-limited)
-`get_dataset_summary`, `search_dataset`, `list_records`, `get_record`, `get_record_comments` (live comment thread for a record, with its own daily cap), `tag_record`
+`get_dataset_summary`, `search_dataset`, `list_records`, `get_record`, `get_record_comments` (live comment thread for a record; its own cap of 300 a day, 50/day during the trial), `tag_record`
 
-**Live reads** (Reddit and Hacker News in real time; 1 credit each, daily cap)
+**Live reads**: Reddit and Hacker News in real time; 1 credit each, 200 a day (50/day during the trial)
 `social_search`, `social_list_posts`, `social_get_post`, `social_get_user`, `social_get_user_activity`, `social_find_channels`
+
+The user tools are for judging an account in a thread you are reading (for example account age). The skills tell Claude not to build profiles of individuals or track specific people.
 
 **Subreddit catalog** (about 1,200 tracked subreddits; free)
 `catalog_search_subreddits`, `catalog_get_subreddit`, `catalog_top_subreddits`
 
 **Watchers and Keyword Monitors**
+
+Each Watcher follows one source, set by its `platform`: `reddit` (a subreddit), `reddit_search` (a Reddit-wide keyword search, run daily), `hackernews` (a Hacker News search), `mastodon` (a hashtag on an instance), `rss` (a feed URL), `x_user` (an X account, paid plan) or `reddit_user` (a community's public Reddit account).
+
 `list_watchers`, `watcher_create`, `watcher_update`, `watcher_delete`, `watcher_remove_source`, `keyword_monitor_list`, `keyword_monitor_create`
 
 **Alerts** (Slack or webhook notifications)
@@ -93,8 +92,8 @@ The Prowlo MCP server provides these tools. Read tools are marked read-only to C
 
 ## Safety
 
-- **Read-only toward Reddit and X.** Prowlo has no tools that post, comment, vote or send messages, and this plugin does not ask Claude to do any of these.
-- **No Reddit or X credentials.** Claude never sees or needs your Reddit or X login.
+- **Read-only toward every source.** Prowlo has no tools that post, comment, vote or send messages, and this plugin does not ask Claude to do any of these.
+- **No source credentials.** Claude never sees or needs your Reddit, X or other social logins.
 - **Writes only change your Prowlo account.** Creating or deleting Watchers, Alerts, Trends or tagging rules affects your Prowlo workspace only. The skills and commands tell Claude to ask before making these changes.
 - **Metered reads are kept small.** The skills tell Claude to use the free Dataset and catalog first and to ask before running many live reads.
 

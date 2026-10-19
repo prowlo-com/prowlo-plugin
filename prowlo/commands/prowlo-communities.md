@@ -17,7 +17,7 @@ If no audience or problem is given, ask for one in a single line and stop.
 2. `catalog_get_subreddit` (`name`, `view` "stats") for the top 5 to 8 candidates. Free.
 3. Optionally `catalog_get_subreddit` with `view` "similar" on the best pick to find neighbors, and `catalog_top_subreddits` to compare growth. Free.
 4. Only if a candidate is outside the catalog, or the user asks for its rules, use `social_find_channels` (`platform` "reddit", `channel`, `include: ["rules"]`). 1 credit each.
-5. Show a ranked table: subreddit, subscribers, posts per day, 30-day growth, promo tolerance, fit. Mark null values as unknown.
+5. Show a ranked table: subreddit, subscribers, posts per day, 30-day growth, posting rules, fit. Mark null values as unknown.
 
 ## Writes
 
