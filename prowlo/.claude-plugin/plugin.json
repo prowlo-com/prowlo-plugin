@@ -1,25 +1,29 @@
 {
   "name": "prowlo",
-  "version": "0.1.0",
-  "description": "Connect Claude to a curated, scored Reddit opportunity feed. Browse high-intent threads, read subreddit moderation patterns, manage tracked keywords, and draft replies — all from Claude.",
+  "displayName": "Prowlo",
+  "version": "1.0.0",
+  "description": "Search and monitor Reddit and Hacker News, plus Mastodon, RSS and X, from Claude. Connects to the hosted Prowlo MCP server: search your indexed Dataset by meaning, read Reddit and Hacker News live, vet subreddits in a free catalog, and set up Watchers, Alerts and Trends. Read-only: it never posts, comments or votes.",
   "author": {
     "name": "Prowlo",
     "email": "support@prowlo.com",
     "url": "https://prowlo.com"
   },
-  "homepage": "https://prowlo.com/integrations/claude-mcp",
+  "homepage": "https://prowlo.com",
   "repository": "https://github.com/prowlo-com/prowlo-plugin",
-  "license": "Proprietary",
+  "license": "MIT",
   "keywords": [
     "reddit",
-    "lead-generation",
-    "mcp",
+    "hacker-news",
     "social-listening",
-    "sales",
-    "marketing",
-    "growth",
-    "subreddit",
-    "engagement",
-    "saas"
-  ]
+    "brand-monitoring",
+    "market-research",
+    "community-research",
+    "subreddits",
+    "mcp"
+  ],
+  "icon": "./assets/icon.png",
+  "documentationUrl": "https://prowlo.com/docs/mcp-setup",
+  "supportUrl": "https://prowlo.com/contact",
+  "privacyPolicyUrl": "https://prowlo.com/privacy",
+  "termsOfServiceUrl": "https://prowlo.com/terms"
 }
